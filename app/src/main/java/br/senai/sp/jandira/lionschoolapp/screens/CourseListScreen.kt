@@ -7,6 +7,7 @@ import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -57,6 +59,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.lionschoolapp.R
+import br.senai.sp.jandira.lionschoolapp.screens.components.CourseCard
 import br.senai.sp.jandira.lionschoolapp.screens.components.SoonComplete
 import org.w3c.dom.Text
 import java.util.Locale
@@ -109,38 +112,77 @@ fun CourseListScreen(
                 )
             }
 
-
-            OutlinedTextField(
-                value = searchCourseState.value,
-                onValueChange = {
-                    searchCourseState.value = it
-                },
+            Column (
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = colorResource(R.color.light_gray)),
-                shape = RoundedCornerShape(16.dp),
-                label = {
-                    Text(
-                        text = stringResource(R.string.find_your_course),
-                        color = colorResource(R.color.gray)
+                    .fillMaxSize()
+                    .padding(10.dp, 20.dp, 10.dp, 20.dp)
+            ) {
+                Column {
+                    OutlinedTextField(
+                        value = searchCourseState.value,
+                        onValueChange = {
+                            searchCourseState.value = it
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = colorResource(R.color.light_gray),
+                                RoundedCornerShape(18.dp)
+                            )
+                            .border(
+                                2.dp,
+                                color = colorResource(R.color.light_orange),
+                                RoundedCornerShape(18.dp))
+                        ,
+                        label = {
+                            Text(
+                                text = stringResource(R.string.find_your_course),
+                                color = colorResource(R.color.gray),
+                            )
+                        },
+                        trailingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "",
+                                tint = colorResource(R.color.gray)
+                            )
+                        },
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = Color.Transparent,
+                            unfocusedBorderColor = Color.Transparent,
+                            cursorColor = Color(0xFFBA88FF),
+                            unfocusedLabelColor = Color(0xFFBA88FF)
+                        )
                     )
-                },
-                trailingIcon = {
+                }
+                Row (
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(0.dp, 20.dp, 0.dp, 20.dp)
+                ) {
                     Icon(
-                        imageVector = Icons.Default.Search,
+                        imageVector = Icons.Default.CheckCircle,
                         contentDescription = "",
-                        tint = colorResource(R.color.blue_purple)
+                        tint = colorResource(R.color.light_orange)
                     )
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Done
-                ),
-                colors = OutlinedTextFieldDefaults.colors(
-                    cursorColor = Color(0xFFBA88FF),
-                    unfocusedLabelColor = Color(0xFFBA88FF)
-                )
-            )
+                    Text(
+                        text = stringResource(R.string.courses),
+                        color = colorResource(R.color.blue_purple),
+                        fontSize = 24.sp
+
+                    )
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    CourseCard()
+                }
+            }
         }
     }
 }
