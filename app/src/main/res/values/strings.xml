@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LionSchoolApp</string>
+    <string name="find_your_favorite">Find your favorite course</string>
+    <string name="home_screen_button_text">Get Started</string>
+    <string name="home_screen_main_text">Get to your destination faster, study at the best vocational school in Brazil. Be the best version of yourself.</string>
+    <string name="find_your_course">Find your course</string>
 </resources>

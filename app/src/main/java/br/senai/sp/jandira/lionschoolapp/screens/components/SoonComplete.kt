@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,15 +23,16 @@ fun SoonComplete(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp), // define a altura da linha
-        verticalAlignment = Alignment.CenterVertically
+            .fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
             painter = painterResource(id = R.drawable.logo),
             contentDescription = "Logo",
             modifier = Modifier
                 .fillMaxHeight(1f)
+                .fillMaxWidth(0.5f)
                 .padding(5.dp)
         )
         Image(
@@ -38,6 +40,7 @@ fun SoonComplete(
             contentDescription = "Logo",
             modifier = Modifier
                 .fillMaxHeight(0.9f)
+                .fillMaxWidth(0.7f)
                 .padding(5.dp)
         )
     }

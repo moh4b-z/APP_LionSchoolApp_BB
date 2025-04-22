@@ -12,7 +12,8 @@
     <color name="blue_purple">#3347b0</color>
     <color name="light_blue_purple">#9fa9e1</color>
     <color name="light_blue">#abcada</color>
-    <color name="light_gray">#a4a5a9</color>
+    <color name="light_gray">#C8C9CC</color>
+    <color name="gray">#a4a5a9</color>
     <color name="green">#30b987</color>
     <color name="light_orange">#ffc23e</color>
     <color name="red">#e25f67</color>

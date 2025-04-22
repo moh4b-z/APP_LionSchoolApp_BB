@@ -43,15 +43,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.senai.sp.jandira.lionschoolapp.R
+import br.senai.sp.jandira.lionschoolapp.screens.components.SoonComplete
 import org.w3c.dom.Text
 import java.util.Locale
 
@@ -68,12 +72,77 @@ fun HomeScreen(
     ){
         Column (
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom
+                .fillMaxSize()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.SpaceBetween
         ){
-            Text(
-                text = "Hello,"
-            )
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.2f),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                SoonComplete()
+            }
+
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    Text(
+                        text = stringResource(R.string.find_your_favorite),
+                        color = colorResource(R.color.blue_purple),
+                        fontSize = 24.sp
+                    )
+                    Card(
+                        modifier = Modifier
+                            .width(50.dp)
+                            .height(10.dp),
+                        shape = CardDefaults.shape,
+                        colors = CardDefaults.cardColors(
+                            colorResource(R.color.light_orange)
+                        ),
+                    ) { }
+                }
+                Text(
+                    text = stringResource(R.string.home_screen_main_text),
+                    color = colorResource(R.color.light_gray),
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                border = BorderStroke(
+                    2.dp,
+                    color = colorResource(R.color.blue_purple)
+                ),
+                elevation = ButtonDefaults.buttonElevation(5.dp),
+                colors = ButtonDefaults.buttonColors(colorResource(R.color.light_orange)),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.home_screen_button_text),
+                    color = colorResource(R.color.blue_purple)
+                )
+            }
+
+            Row {  }
         }
     }
 }
