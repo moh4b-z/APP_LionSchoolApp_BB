@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.lionschoolapp.ui.theme
+package br.senai.sp.jandira.lionschool.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun LionSchoolAppTheme(
+fun LionSchoolTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

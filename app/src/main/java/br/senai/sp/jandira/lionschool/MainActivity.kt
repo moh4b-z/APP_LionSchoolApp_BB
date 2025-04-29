@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.lionschoolapp
+package br.senai.sp.jandira.lionschool
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,37 +11,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.senai.sp.jandira.lionschoolapp.ui.theme.LionSchoolAppTheme
+import br.senai.sp.jandira.lionschool.ui.theme.LionSchoolTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LionSchoolAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            LionSchoolTheme {
+
+
+            }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    LionSchoolAppTheme {
-        Greeting("Android")
-    }
-}

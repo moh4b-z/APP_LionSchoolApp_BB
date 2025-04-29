@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.lionschoolapp
+package br.senai.sp.jandira.lionschool
 
 import org.junit.Test
 

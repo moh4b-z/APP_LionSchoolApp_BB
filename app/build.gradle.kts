@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "br.senai.sp.jandira.lionschoolapp"
+    namespace = "br.senai.sp.jandira.lionschool"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "br.senai.sp.jandira.lionschoolapp"
+        applicationId = "br.senai.sp.jandira.lionschool"
         minSdk = 30
         targetSdk = 35
         versionCode = 1
@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
