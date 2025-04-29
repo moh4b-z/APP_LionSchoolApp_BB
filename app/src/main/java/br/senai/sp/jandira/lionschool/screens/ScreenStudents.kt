@@ -2,10 +2,7 @@ package br.senai.sp.jandira.lionschool.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -23,17 +20,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import br.senai.sp.jandira.lionschool.R
+import br.senai.sp.jandira.lionschool.components.StudentCard
 import br.senai.sp.jandira.lionschool.ui.theme.LionSchoolTheme
 
 @Composable
-fun StudentsScreen(navController: NavHostController) {
-    var search by remember { mutableStateOf("") }
-
+fun StudentsScreen() {
     LionSchoolTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
 
                 // Header
                 Row(
@@ -48,141 +47,107 @@ fun StudentsScreen(navController: NavHostController) {
                             painter = painterResource(id = R.drawable.logo),
                             contentDescription = stringResource(R.string.logo_descripition),
                             contentScale = ContentScale.Fit,
-                            modifier = Modifier.size(40.dp)
+                            modifier = Modifier
+                                .size(40.dp)
+                                .padding(end = 8.dp)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = stringResource(R.string.title),
                             fontSize = 18.sp,
-                            color = Color.Blue,
+                            color = Color(0xFF3347B0),
                             fontWeight = FontWeight.Bold
                         )
                     }
                     Card(
-                        modifier = Modifier.size(40.dp).clip(CircleShape),
-                        colors = CardDefaults.cardColors(Color(0xFFFFC23D))
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape),
+                        colors = CardDefaults.cardColors(Color(0xFFFFC23D)),
                     ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                text = "DS",
-                                fontWeight = FontWeight.Bold,
-                                color = Color(0xFF3347B0)
-                            )
+                        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                            Text(text = "DS", fontWeight = FontWeight.Bold, color = Color(0xFF3347B0))
                         }
                     }
                 }
 
-                // Divider
+                // Campo de busca
+                OutlinedTextField(
+                    value = "",
+                    onValueChange = {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    placeholder = {
+                        Text(text = stringResource(R.string.search_placeholder))
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = stringResource(R.string.search_placeholder),
+                            tint = Color.Gray
+                        )
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Filtros
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    FilterButton("Todos", selected = true)
+                    FilterButton("Cursando", selected = false)
+                    FilterButton("Finalizado", selected = false)
+                }
+
                 Divider(
                     color = Color(0xFFFFC23D),
                     thickness = 2.dp,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
 
-                // Search bar zxdc-
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Filtros
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    FilterButton("Todos")
-                    FilterButton("Cursando")
-                    FilterButton("Finalizado")
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Título com ícone
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.twitter),
-                        contentDescription = "Students",
-                        tint = Color(0xFFFFC23D),
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "Students List",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF3347B0)
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Cards de estudantes (mock layout)
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    items(5) { // mock de 5 cards
-                        StudentCard()
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun FilterButton(text: String) {
-    Card(
-        modifier = Modifier
-            .clip(RoundedCornerShape(50))
-            .clickable { /* ação futura */ },
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFC23D))
-    ) {
-        Text(
-            text = text,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF3347B0)
-        )
-    }
-}
-
-@Composable
-fun StudentCard() {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF7D87E4)),
-        shape = RoundedCornerShape(12.dp)
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 16.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "Student photo",
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column {
                 Text(
-                    text = "Nome do Aluno",
-                    fontSize = 18.sp,
+                    text = "Students List",
+                    fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Color(0xFF3347B0),
+                    modifier = Modifier.padding(start = 8.dp, bottom = 16.dp)
                 )
-                Text(
-                    text = "RA 0000000",
-                    fontSize = 14.sp,
-                    color = Color.White
-                )
+
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    StudentCard()
+                    StudentCard()
+                    StudentCard()
+                }
             }
         }
     }
 }
+
+@Composable
+fun FilterButton(text: String, selected: Boolean) {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (selected) Color(0xFF3347B0) else Color(0xFFFFC23D),
+            contentColor = if (selected) Color.White else Color(0xFF3347B0)
+        ),
+        shape = RoundedCornerShape(50.dp),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
+        modifier = Modifier.height(40.dp)
+    ) {
+        Text(text = text)
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun StudentsScreenPreview() {
     LionSchoolTheme {
-        StudentsScreen(navController = androidx.navigation.compose.rememberNavController())
+        StudentsScreen()
     }
 }

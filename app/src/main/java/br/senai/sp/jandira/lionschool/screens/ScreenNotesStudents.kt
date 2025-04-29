@@ -202,18 +202,18 @@ fun SubjectPerformanceItem(disciplina: Disciplina) {
 private fun mockStudentData(): Aluno {
     return Aluno(
         id = 1,
-        nome = "Luana Oliveira Dias",
+        nome = "Mohammad",
         matricula = "001",
         curso = "Técnico em Desenvolvimento de Sistemas",
         foto = "",
         status = "Concluído",
         anoConclusao = "2024",
         disciplinas = listOf(
-            Disciplina(1, "SIOP", 70.0, "Aprovado"),
-            Disciplina(2, "INRI", 86.0, "Aprovado"),
-            Disciplina(3, "INNU", 59.0, "Aprovado"),
-            Disciplina(4, "HA", 100.0, "Aprovado"),
-            Disciplina(5, "SERE", 44.0, "Reprovado"),
+            Disciplina(1, "SIOP", 20.0, "Reprovado"),
+            Disciplina(2, "INRI", 70.0, "Aprovado"),
+            Disciplina(3, "INNU", 65.0, "Aprovado"),
+            Disciplina(4, "HA", 80.0, "Aprovado"),
+            Disciplina(5, "SERE", 100.0, "Aprovado"),
             Disciplina(6, "CAES", 52.0, "Reprovado")
         )
     )
